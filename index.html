@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Bolsa Familia</title>
+
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<link type="text/css" rel="stylesheet" href="materialize/css/materialize.css" media="screen,projection" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" media="screen,projection" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+		integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+	<nav>
+		<div class="nav-wrapper green darken-1">
+			<a href="#" class="brand-logo center">Bolsa Familia</a>
+
+		</div>
+	</nav>
+	<div class="row">
+
+		<div class=" col s12 m4 l3   blue-grey lighten-5" style="height: 499px;">
+			<img class="responsive-img art" src="imagens/Bolsa_familia.png">
+			<hr>
+			<button id="btncidade" class="btn waves-effect waves-light" type="submit" name="action"
+				onclick="esconderFormCidade('formularioCidade', 'dados')"> <i class="fas fa-city"></i> Cidade </button>
+			<br>
+
+			<button id="btncpf" class="btn waves-effect waves-light" type="submit" name="action"
+				onclick="esconderFormCidade('formulario', 'dados2')"><i class="fas fa-id-card"
+					style="margin-right: 13px;"></i>CPF</button>
+
+			<hr style="margin-top: 50px;">
+		</div>
+
+		<div class=" col s10 m4 l4 forms" id="formulario">
+
+			<form id="formcpf">
+				<div class="row">
+					<div class="input-field col s12" style="margin-top: 18px;">
+						<input id="cpf" type="text">
+						<label for="cpf">CPF</label>
+					</div>
+				</div>
+				<br>
+
+				<select id="cpfMes">
+					<option value="" disabled selected>Selecione o mês</option>
+					<option value="Janeiro">Janeiro</option>
+					<option value="Fevereiro">Fevereiro</option>
+					<option value="Março">Março</option>
+				</select>
+
+				<button class="btn waves-effect waves-light" type="button" name="action"
+					onclick="buscarPorCpf()">Buscar<i class="material-icons right">send</i></button>
+
+			</form>
+
+		</div>
+
+		<div class="col s11 m4 l4 forms " id="formularioCidade">
+
+			<form class="col s11 " style="margin-left: 9px; margin-top: 12px;">
+				<select id="selecidade">
+					<option value="" disabled selected>Selecione a cidade</option>
+					<option value="2303808">Cedro</option>
+					<option value="2305506">Iguatu</option>
+					<option value="2314003">Várzea alegre</option>
+				</select>
+				<br>
+				<select id="seleMescidade">
+					<option value="" disabled selected>Selecione o mês</option>
+					<option value="201901">Janeiro</option>
+					<option value="201902">Fevereiro</option>
+					<option value="201903">Março</option>
+				</select>
+				<button class="btn waves-effect waves-light" type="button" name="action"
+					onclick="buscarPorCidade()">Buscar<i class="material-icons right">send</i>
+				</button>
+			</form>
+		</div>
+
+		<div class=" col s11 m1 l4 dados " id="dados">
+			<ul class="collection" style="border-radius: 12px">
+				<li class="collection-item avatar">
+					<img src="imagens/ap.png" alt="" class="circle">
+					<span class="title">Cidade</span>
+					<p><span id="valor2"></span> <br>
+					</p>
+				</li>
+				<li class="collection-item avatar">
+					<img src="imagens/pe.png" alt="" class="circle">
+					<span class="title">Total de Beneficiados</span>
+					<p><strong id="tpessoas"></strong> <br>
+					</p>
+				</li>
+				<li class="collection-item avatar">
+					<img src="imagens/mo.png" alt="" class="circle">
+					<span class="title">Valor total</span>
+					<p>R$:<span id="valor"></span> <br>
+					</p>
+				</li>
+			</ul>
+		</div>
+
+		<div class="col s11 m1 l4 dados" id="dados2">
+			<ul class="collection" style="border-radius: 12px;">
+
+				<li class="collection-item avatar">
+					<img src="imagens/user.png" alt="" class="circle">
+					<span class="title">Nome Beneficiado</span>
+					<p><strong id="pessoas"></strong> <br>
+					</p>
+				</li>
+				<li class="collection-item avatar">
+					<img src="imagens/card.png" alt="" class="circle">
+					<span class="title">CPF</span>
+					<p><strong id="pcpf"></strong> <br>
+					</p>
+				</li>
+				<li class="collection-item avatar">
+					<img src="imagens/mo.png" alt="" class="circle">
+					<span class="title">Valor total</span>
+					<p>R$:<strong id="pvalor"></strong> <br>
+					</p>
+				</li>
+			</ul>
+		</div>
+		
+
+	</div>
+
+	<div>
+		<footer class="page-footer green darken-1" style="margin-top: -20px;">
+			<div class="footer-copyright green darken-1">
+				<div class="container ">
+					© 2019 Copyright SISTEMAS INFORMAÇÃO - IFCE - CAMPUS - CEDRO
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	
+
+
+
+
+
+
+	<!--Import jQuery before materialize.js-->
+	<script src="materialize/js/jquery-3.4.1.js"></script>
+	<!-- Compiled and minified JavaScript -->
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	<script type="text/javascript" src="js/ajax.js"></script>
+	<script type="text/javascript" src="js/ajaxBuscaCpf.js"></script>
+	<script type="text/javascript" src="js/vendor/maskJS.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+
+	<script>
+
+		$(document).ready(function () {
+			$('select').formSelect();
+		});
+
+
+
+
+		function esconderFormCidade(el, d) {
+
+
+			const forms = document.querySelectorAll(".forms");
+			const dados = document.querySelectorAll(".dados");
+
+			for (let i = 0; i < forms.length; i++) {
+				forms[i].style.display = "none";
+				dados[i].style.display = "none";
+			}
+
+			let myEl = document.getElementById(el);
+			let myData = document.getElementById(d);
+
+
+			var display = myEl.style.display;
+			//var display2 = document.getElementById("formulario").style.display;
+
+			if (display != "inline-block") {
+
+				myEl.style.display = "inline-block";
+				myData.style.display = "inline-block";
+
+			} else {
+				myEl.style.display = 'none';
+				myData.style.display = "none";
+				//document.getElementById("formulario").style.display = 'none';
+
+			}
+
+
+
+		}
+
+	</script>
+</body>
+
+</html>
